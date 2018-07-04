@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Mountain : MonoBehaviour {
 
-    public struct Node {
-        public List<Node> neighbors;
+    //public struct Node {
+    //    public List<Node> neighbors;
 
-        public Node() {
-            neighbors = new List<Node>();
-        }
-    }
+    //    public Node() {
+    //        neighbors = new List<Node>();
+    //    }
+    //}
 
     public bool button = false;
     public GameObject roomPrefab;
