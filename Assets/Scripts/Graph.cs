@@ -2,15 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Graph : MonoBehaviour {
+public class Graph {
+    List<Node> nodes = new List<Node>();
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    void addNode(Node a){
+        nodes.Add(a);
+    }
+
+    public void connectNodes(Node a, Node b) {
+        a.neighbors.Add(b);
+        b.neighbors.Add(a);
+    }
+
+    public Graph findSubGraph(Graph a){
+        return a;
+    }
+
+
+
 }

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Node {
 
-    List<Node> neighbors = new List<Node>;
+    string nodeType = "";
+
+    public List<Node> neighbors = new List<Node>();
 
 }

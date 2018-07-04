@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grammar : MonoBehaviour {
+public class Grammar{
 
-	// Use this for initialization
-	void Start () {
+    Dictionary<Graph,List<Graph>> grammar_choices = new Dictionary<Graph, List<Graph>>();
+
+	void Step () {
 		
 	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
 }
