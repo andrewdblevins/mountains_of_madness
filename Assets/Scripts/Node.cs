@@ -7,5 +7,6 @@ public class Node {
     string nodeType = "";
 
     public List<Node> neighbors = new List<Node>();
+    public Room room;
 
 }
