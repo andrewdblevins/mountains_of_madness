@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +13,10 @@ public class Player {
 
     private int maxHealth = 100;
     private int maxSanity = 100;
+
+    public Player() {
+        Initialize();
+    }
 
     private void Initialize()
     {
