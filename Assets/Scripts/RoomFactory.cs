@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 public class RoomFactory
 {
     Random random = new Random();
+    UnityEngine.Vector3 endAttractionLocation = new UnityEngine.Vector3(500f, 500f, 0);
 
     public Room MakeRoom(string roomDescriptor)
     {
@@ -48,8 +50,10 @@ public class RoomFactory
                 room.Initialize(MakeTreasure(3, Treasure.TreasureType.PERMANENT), null);
                 break;
             case "start":
+                room.SetAttractionLocation(UnityEngine.Vector3.zero);
                 break;
             case "end":
+                room.SetAttractionLocation(endAttractionLocation);
                 break;
             case "hall":
                 break;
