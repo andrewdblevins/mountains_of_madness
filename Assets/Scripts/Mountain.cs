@@ -61,6 +61,10 @@ public class Mountain : MonoBehaviour {
             start = false;
 
             player = new Player();
+
+            foreach(Room r in rooms) {
+                r.InitializeView();
+            }
         }
     }
 
