@@ -35,6 +35,11 @@ public class Mountain : MonoBehaviour {
             n.room = room;
             rooms.Add(room);
         }
+        if (parent == null)
+        {
+            rooms[0].SetAttractionLocation(Vector3.zero);
+            rooms[rooms.Count - 1].SetAttractionLocation(new Vector3(250f, 250f, 0f));
+        }
 
         Debug.Log("starting board manager");
         boardManager.Initialize(rooms);
@@ -93,10 +98,6 @@ public class Mountain : MonoBehaviour {
                 r.InitializeView();
             }
         }
-        boardManager.Step();
-        boardManager.Step();
-        boardManager.Step();
-        boardManager.Step();
         boardManager.Step();
     }
 

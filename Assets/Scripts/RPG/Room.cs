@@ -10,6 +10,8 @@ public class Room : MonoBehaviour, IPointerClickHandler {
     private Treasure treasure;
     private Monster monster;
     public Node node;
+    private bool attractToLocation = false;
+    private Vector3 attractionLocation;
 
     //public RoomUI view;
 
@@ -89,5 +91,21 @@ public class Room : MonoBehaviour, IPointerClickHandler {
     public void OnPointerClick(PointerEventData eventData) {
         //AttemptEnter(new Player());
         Mountain.getInstance().MovePlayerTo(this);
+    }
+
+    public void SetAttractionLocation(Vector3 attractionLocation)
+    {
+        attractToLocation = true;
+        this.attractionLocation = attractionLocation;
+    }
+
+    public bool UseAttractLocation()
+    {
+        return attractToLocation;
+    }
+
+    public Vector3 GetAttractionLocation()
+    {
+        return attractionLocation;
     }
 }

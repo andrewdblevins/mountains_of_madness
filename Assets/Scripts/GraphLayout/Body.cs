@@ -9,10 +9,10 @@ public class Body  {
 	public Vector3 position;
 	private Vector3 velocity;
 	private Vector3 acceleration;
-	private float attractConstant = .00003f;
+	private float attractConstant = .0001f;
     private float repulseConstant = 100f;
-    private float originAttractionConstant = .0001f;
-    private float drag = .90f;
+    private float originAttractionConstant = .00005f;
+    private float drag = .8f;
 	public Guid InstanceID {get; private set;}
 
 	public Body(GameObject _dot){
@@ -65,13 +65,18 @@ public class Body  {
 
     public Vector3 attractOrigin()
     {
-        Vector3 forc = position - Vector3.zero;
-        float distance = forc.magnitude;
-        distance = Mathf.Clamp(distance, 5f, 250f);
+        Room room = dot.GetComponent<Room>();
+        if (room.UseAttractLocation())
+        {
+            Vector3 forc = position - room.GetAttractionLocation();
+            float distance = forc.magnitude;
+            distance = Mathf.Clamp(distance, 5f, 250f);
 
-        forc.Normalize();
-        float strenght = -(originAttractionConstant * mass * mass) * (distance * distance);
-        return new Vector3(forc.x * strenght, forc.y * strenght, forc.z * strenght);
+            forc.Normalize();
+            float strenght = -(originAttractionConstant * mass * mass) * (distance * distance);
+            return new Vector3(forc.x * strenght, forc.y * strenght, forc.z * strenght);
+        }
+        return Vector3.zero;
     }
 
 
