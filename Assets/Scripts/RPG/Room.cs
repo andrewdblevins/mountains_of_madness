@@ -23,34 +23,17 @@ public class Room : MonoBehaviour, IPointerClickHandler {
 
     public void InitializeView() {
         if (node != null) {
+            int count = 0;
             foreach (Node n in node.neighbors) {
-                //LineRenderer line = gameObject.AddComponent<LineRenderer>() as LineRenderer;
-                //line.SetPosition(0, transform.position);
-                //line.SetPosition(1, n.room.transform.position);
-                ////line.sortingOrder = 4;
-                ////line.sortingLayerName = "UI";
+                count++;
+                if (edges.Count < count) {
+                    GameObject edge = Instantiate(image.gameObject, transform);
+                    edge.name = "Edge";
+                    Canvas canvas = edge.AddComponent<Canvas>() as Canvas;
+                    SetEdge(edge, n);
 
-                //line.sortingOrder = 1;
-                //line.material = new Material(Shader.Find("Sprites/Default"));
-                //line.material.color = Color.red;
-
-                GameObject edge = Instantiate(image.gameObject, transform);
-                edge.name = "Edge";
-                Canvas canvas = edge.AddComponent<Canvas>() as Canvas;
-                SetEdge(edge, n);
-                //edge.transform.position = (transform.position + n.room.transform.position) / 2f;
-                //float dist = Vector3.Distance(transform.position, n.room.transform.position);
-                //float deltaY = (transform.position.y - n.room.transform.position.y);
-                //deltaY = transform.position.x < n.room.transform.position.x ? -deltaY : deltaY;
-                //float angle = Mathf.Asin(deltaY / dist);
-                //Debug.Log(angle + " dist: " + dist + "  y: " + deltaY + "   sin: " + (deltaY / dist));
-                ////edge.transform.Rotate(Vector3.up, angle);
-                //edge.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Rad2Deg*angle);
-                //Canvas canvas = edge.gameObject.AddComponent<Canvas>() as Canvas;
-                //canvas.overrideSorting = true;
-                //(edge.transform as RectTransform).sizeDelta = new Vector2(dist, 10);
-
-                edges.Add(edge);
+                    edges.Add(edge);
+                }
             }
 
         }
