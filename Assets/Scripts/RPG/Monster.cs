@@ -5,8 +5,10 @@ using System.Collections.Generic;
 public class Monster {
 
     private int attack;
+    private int sanityAttack;
     private int health;
     private int dieSize;
+    private int sanityDieSize;
 
     // Player acquires on kill.
     private Treasure treasure;
@@ -23,6 +25,11 @@ public class Monster {
     public int GetAttack()
     {
         return attack + random.Next(dieSize);
+    }
+
+    public int GetSanityAttack()
+    {
+        return sanityAttack + random.Next(sanityDieSize);
     }
 
     public Treasure GetTreasure()

@@ -53,6 +53,7 @@ public class Player {
     public void DoCombat(Monster monster)
     {
         ModifyHealth(-monster.GetAttack());
+        ModifySanity(-monster.GetSanityAttack());
         monster.ModifyHealth(-(attack + random.Next(dieSize)));
     }
 
