@@ -9,10 +9,15 @@ public class Body  {
 	public Vector3 position;
 	private Vector3 velocity;
 	private Vector3 acceleration;
-	private float attractConstant = .00001f;
-    private float repulseConstant = 6f;
+
+	private float attractConstant = .00005f;
+    private float repulseConstant = 15f;
     private float originAttractionConstant = .00005f;
-    private float drag = .7f;
+    private float limitRepulsionConstant = 5f;
+    private float drag = .8f;
+    private float minPosition = 0f;
+    private float maxPosition = 500f;
+
 	public Guid InstanceID {get; private set;}
 
 	public Body(GameObject _dot){
@@ -35,6 +40,7 @@ public class Body  {
         }
 
         applyForce(attractOrigin());
+        applyForce(repulseLimits());
 
         velocity += acceleration;
 		position += velocity;
@@ -52,7 +58,7 @@ public class Body  {
         acceleration += new Vector3(force.x/mass,force.y/mass,force.z/mass);
 	}
 
-    public Vector3 attractNeighbor(GameObject b)
+    private Vector3 attractNeighbor(GameObject b)
     {
         Vector3 forc = position - b.transform.position;
         float distance = forc.magnitude;
@@ -63,7 +69,7 @@ public class Body  {
         return new Vector3(forc.x * strenght, forc.y * strenght, forc.z * strenght);
     }
 
-    public Vector3 attractOrigin()
+    private Vector3 attractOrigin()
     {
         Room room = dot.GetComponent<Room>();
         if (room.UseAttractLocation())
@@ -78,7 +84,39 @@ public class Body  {
         }
         return Vector3.zero;
     }
+    
+    private Vector3 repulseLimits()
+    {
+        Vector3 forc = Vector3.zero;
+        if (position.x < minPosition)
+        {
+            forc.x += -position.x;
+        } else if (position.x > maxPosition)
+        {
+            forc.x += (maxPosition - position.x);
+        }
+        if (position.y < minPosition)
+        {
+            forc.y += -position.y;
+        }
+        else if (position.y > maxPosition)
+        {
+            forc.y += (maxPosition - position.y);
+        }
+        if (position.z < minPosition)
+        {
+            forc.z += -position.z;
+        }
+        else if (position.z > maxPosition)
+        {
+            forc.z += (maxPosition - position.z);
+        }
+        float distance = forc.magnitude;
 
+        forc.Normalize();
+        float strenght = limitRepulsionConstant * distance;
+        return new Vector3(forc.x * strenght, forc.y * strenght, forc.z * strenght);
+    }
 
     public Vector3 repulse(Body b){
 		Vector3 forc = position - b.position;

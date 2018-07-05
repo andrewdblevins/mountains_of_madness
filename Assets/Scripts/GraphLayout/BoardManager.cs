@@ -43,20 +43,4 @@ public class BoardManager
             body.update();
         }
     }
-
-    public void OnDrawGizmos()
-    {
-        if (displayQuad)
-        {
-            quadTree.getAllQuad(quads);
-            foreach (Quad quad in quads)
-            {
-                Gizmos.color = quad.color;
-                Gizmos.DrawWireCube(quad.position, quad.size);
-                if (quad.gravityCenter != Vector3.zero)
-                    Gizmos.DrawSphere(quad.gravityCenter, quad.mass);
-            }
-            quads.Clear();
-        }
-    }
 }

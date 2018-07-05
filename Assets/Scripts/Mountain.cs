@@ -38,7 +38,7 @@ public class Mountain : MonoBehaviour {
         if (parent == null)
         {
             rooms[0].SetAttractionLocation(Vector3.zero);
-            rooms[rooms.Count - 1].SetAttractionLocation(new Vector3(250f, 250f, 0f));
+            rooms[rooms.Count - 1].SetAttractionLocation(new Vector3(500f, 500f, 0f));
         }
 
         Debug.Log("starting board manager");
