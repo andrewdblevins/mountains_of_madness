@@ -21,15 +21,18 @@ public class BoardManager
 
     public void Step()
     {
-        boundary.update(bodys);
-        float sized = Mathf.Max((boundary.max.x - boundary.min.x), (boundary.max.y - boundary.min.y));
-        Vector3 center = new Vector3((boundary.max.x + boundary.min.x) / 2, (boundary.max.y + boundary.min.y) / 2, (boundary.max.z + boundary.min.z) / 2);
-        quadTree = new QuadNode(1, center, sized);
-        foreach (Body bod in bodys)
+        if (bodys.Count > 0)
         {
-            quadTree.addBody(bod);
+            boundary.update(bodys);
+            float sized = Mathf.Max((boundary.max.x - boundary.min.x), (boundary.max.y - boundary.min.y));
+            Vector3 center = new Vector3((boundary.max.x + boundary.min.x) / 2, (boundary.max.y + boundary.min.y) / 2, (boundary.max.z + boundary.min.z) / 2);
+            quadTree = new QuadNode(1, center, sized);
+            foreach (Body bod in bodys)
+            {
+                quadTree.addBody(bod);
+            }
+            BarnesHut();
         }
-        BarnesHut();
     }
 
     void BarnesHut()

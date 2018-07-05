@@ -19,7 +19,7 @@ public class Monster {
         this.sanityAttack = sanityAttack;
         this.health = health;
         this.dieSize = dieSize;
-        this.sanityAttack = sanityAttack;
+        this.sanityDieSize = sanityDieSize;
         this.treasure = treasure;
     }
 
