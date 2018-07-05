@@ -14,10 +14,15 @@ public class Mountain : MonoBehaviour {
 
     public bool button = false;
     public GameObject roomPrefab;
+    public Canvas canvas;
 
     public void Generate( List<Node> graph) {
         foreach( Node n in graph) {
-            Instantiate(roomPrefab, new Vector3(Random.Range(-200, 200), Random.Range(-200, 200)), Quaternion.identity);
+            GameObject room = Instantiate(roomPrefab, canvas.transform);
+            room.transform.localPosition = new Vector3(Random.Range(-150f, 150f), Random.Range(-120f, 120f), 0f);
+            //GameObject room = Instantiate(roomPrefab, new Vector3(100f, 100f, 0f), Quaternion.identity);
+            //GameObject room = Instantiate(roomPrefab, new Vector3(Random.Range(-150f, 150f), Random.Range(-120f, 120f)), Quaternion.identity);
+            //room.transform.SetParent(canvas.transform, true);
         }
     }
 
