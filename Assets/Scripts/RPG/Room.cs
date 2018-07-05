@@ -1,11 +1,13 @@
 ﻿using System;
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class Room : MonoBehaviour, IPointerClickHandler {
     public Image image;
+
+    private List<GameObject> edges = new List<GameObject>();
 
     private Treasure treasure;
     private Monster monster;
@@ -34,20 +36,50 @@ public class Room : MonoBehaviour, IPointerClickHandler {
 
                 GameObject edge = Instantiate(image.gameObject, transform);
                 edge.name = "Edge";
-                edge.transform.position = (transform.position + n.room.transform.position) / 2f;
-                float dist = Vector3.Distance(transform.position, n.room.transform.position);
-                float deltaY = (transform.position.y - n.room.transform.position.y);
-                deltaY = transform.position.x < n.room.transform.position.x ? -deltaY : deltaY;
-                float angle = Mathf.Asin(deltaY / dist);
-                Debug.Log(angle + " dist: " + dist + "  y: " + deltaY + "   sin: " + (deltaY / dist));
-                //edge.transform.Rotate(Vector3.up, angle);
-                edge.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Rad2Deg*angle);
-                Canvas canvas = edge.gameObject.AddComponent<Canvas>() as Canvas;
-                canvas.overrideSorting = true;
-                (edge.transform as RectTransform).sizeDelta = new Vector2(dist, 10);
+                Canvas canvas = edge.AddComponent<Canvas>() as Canvas;
+                SetEdge(edge, n);
+                //edge.transform.position = (transform.position + n.room.transform.position) / 2f;
+                //float dist = Vector3.Distance(transform.position, n.room.transform.position);
+                //float deltaY = (transform.position.y - n.room.transform.position.y);
+                //deltaY = transform.position.x < n.room.transform.position.x ? -deltaY : deltaY;
+                //float angle = Mathf.Asin(deltaY / dist);
+                //Debug.Log(angle + " dist: " + dist + "  y: " + deltaY + "   sin: " + (deltaY / dist));
+                ////edge.transform.Rotate(Vector3.up, angle);
+                //edge.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Rad2Deg*angle);
+                //Canvas canvas = edge.gameObject.AddComponent<Canvas>() as Canvas;
+                //canvas.overrideSorting = true;
+                //(edge.transform as RectTransform).sizeDelta = new Vector2(dist, 10);
+
+                edges.Add(edge);
             }
 
         }
+    }
+
+    public void Update() {
+        int i = 0;
+        foreach(GameObject edge in edges) {
+            
+            if (node != null && node.neighbors!= null && node.neighbors.Count > i) {
+                SetEdge(edge, node.neighbors[i]);
+            }
+
+            i++;
+        }
+    }
+
+    private void SetEdge(GameObject edge, Node other) {
+        edge.transform.position = (transform.position + other.room.transform.position) / 2f;
+        float dist = Vector3.Distance(transform.position, other.room.transform.position);
+        float deltaY = (transform.position.y - other.room.transform.position.y);
+        deltaY = transform.position.x < other.room.transform.position.x ? -deltaY : deltaY;
+        float angle = Mathf.Asin(deltaY / dist);
+        //Debug.Log(angle + " dist: " + dist + "  y: " + deltaY + "   sin: " + (deltaY / dist));
+        //edge.transform.Rotate(Vector3.up, angle);
+        edge.transform.eulerAngles = new Vector3(0f, 0f, Mathf.Rad2Deg * angle);
+        Canvas canvas = edge.GetComponent<Canvas>() as Canvas;
+        canvas.overrideSorting = true;
+        (edge.transform as RectTransform).sizeDelta = new Vector2(dist, 10);
     }
 
     public bool AttemptEnter(Player player)
