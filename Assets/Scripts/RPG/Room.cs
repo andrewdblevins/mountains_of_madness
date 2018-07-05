@@ -9,7 +9,7 @@ public class Room : MonoBehaviour, IPointerClickHandler {
 
     private Treasure treasure;
     private Monster monster;
-    private Node node;
+    public Node node;
 
     //public RoomUI view;
 
@@ -47,11 +47,6 @@ public class Room : MonoBehaviour, IPointerClickHandler {
             }
         }
 
-        SetColor(Color.green);
-        foreach(Node n in node.neighbors) {
-            n.room.SetColor(Color.yellow);
-        }
-
         return true;
     }
 
@@ -60,6 +55,7 @@ public class Room : MonoBehaviour, IPointerClickHandler {
     }
 
     public void OnPointerClick(PointerEventData eventData) {
-        AttemptEnter(new Player());
+        //AttemptEnter(new Player());
+        Mountain.getInstance().MovePlayerTo(this);
     }
 }

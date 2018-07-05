@@ -16,6 +16,10 @@ public class Player {
 
     private Random random = new Random();
 
+    public Player() {
+        Initialize();
+    }
+
     private void Initialize()
     {
         health = maxHealth;
