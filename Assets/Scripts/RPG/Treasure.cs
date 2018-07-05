@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 public class Treasure {
@@ -7,12 +8,23 @@ public class Treasure {
     private int health;
     private int sanity;
     private int attack;
+    private int dieStrength;
     private TreasureType treasureType;
 
     public enum TreasureType
     {
         ONE_SHOT,
         PERMANENT,
+    }
+
+    public Treasure(int gold, int health, int sanity, int attack, int dieStrength, TreasureType treasureType)
+    {
+        this.gold = gold;
+        this.health = health;
+        this.sanity = sanity;
+        this.attack = attack;
+        this.treasureType = treasureType;
+        this.dieStrength = dieStrength;
     }
 
     public void Initialize()
@@ -47,5 +59,10 @@ public class Treasure {
     public TreasureType GetTreasureType()
     {
         return treasureType;
+    }
+
+    internal int GetDieStrength()
+    {
+        return dieStrength;
     }
 }

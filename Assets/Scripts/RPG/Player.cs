@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Player {
 
@@ -14,8 +15,6 @@ public class Player {
     private int maxHealth = 100;
     private int maxSanity = 100;
 
-    private Random random = new Random();
-
     private void Initialize()
     {
         health = maxHealth;
@@ -27,7 +26,7 @@ public class Player {
     public void ModifyHealth(int value)
     {
         health += value;
-        health = Math.Max(health, maxHealth);
+        health = System.Math.Max(health, maxHealth);
         if (health <= 0)
         {
             // TODO: die.
@@ -37,7 +36,7 @@ public class Player {
     public void ModifySanity(int value)
     {
         sanity += value;
-        sanity = Math.Max(sanity, maxSanity);
+        sanity = System.Math.Max(sanity, maxSanity);
     }
 
     public void ModifyAttack(int value)
@@ -50,11 +49,18 @@ public class Player {
         gold += value;
     }
 
+    public void ModifyDieStrength(int value)
+    {
+        dieSize += value;
+        dieSize = System.Math.Max(0, dieSize);
+    }
+
+
     public void DoCombat(Monster monster)
     {
         ModifyHealth(-monster.GetAttack());
         ModifySanity(-monster.GetSanityAttack());
-        monster.ModifyHealth(-(attack + random.Next(dieSize)));
+        monster.ModifyHealth(-(attack + Random.Range(1, dieSize)));
     }
 
     public void AcquireTreasure(Treasure treasure)
@@ -63,6 +69,7 @@ public class Player {
         ModifyHealth(treasure.GetHealth());
         ModifySanity(treasure.GetSanity());
         ModifyAttack(treasure.GetAttack());
+        ModifyDieStrength(treasure.GetDieStrength());
     }
 
     // Use this for initialization

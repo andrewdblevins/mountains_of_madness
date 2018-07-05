@@ -5,9 +5,10 @@ public class Room
     private Treasure treasure;
     private Monster monster;
 
-    public void Initialize()
+    public void Initialize(Treasure treasure, Monster monster)
     {
-        // set up monster/treasure;
+        this.treasure = treasure;
+        this.monster = monster;
     }
 
     public bool AttemptEnter(Player player)

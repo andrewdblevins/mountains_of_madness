@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine;
 
 public class Monster {
 
@@ -13,23 +13,24 @@ public class Monster {
     // Player acquires on kill.
     private Treasure treasure;
 
-    private Random random = new Random();
-
-    private void Initialize()
+    public Monster(int attack, int sanityAttack, int health, int dieSize, int sanityDieSize, Treasure treasure)
     {
-        attack = 10;
-        health = 10;
-        dieSize = 6;
+        this.attack = attack;
+        this.sanityAttack = sanityAttack;
+        this.health = health;
+        this.dieSize = dieSize;
+        this.sanityAttack = sanityAttack;
+        this.treasure = treasure;
     }
 
     public int GetAttack()
     {
-        return attack + random.Next(dieSize);
+        return attack + Random.Range(1, dieSize);
     }
 
     public int GetSanityAttack()
     {
-        return sanityAttack + random.Next(sanityDieSize);
+        return sanityAttack + Random.Range(1, sanityDieSize);
     }
 
     public Treasure GetTreasure()
@@ -46,14 +47,4 @@ public class Monster {
     {
         return health <= 0;
     }
-
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }
