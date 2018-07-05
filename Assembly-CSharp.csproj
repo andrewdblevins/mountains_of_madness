@@ -65,6 +65,7 @@
     <Compile Include="Assets\Scripts\Graph.cs" />
     <Compile Include="Assets\Scripts\Mountain.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
+    <Compile Include="Assets\Scripts\RoomFactory.cs" />
     <Compile Include="Assets\Scripts\RoomUI.cs" />
     <Compile Include="Assets\Scripts\RPG\Monster.cs" />
     <Compile Include="Assets\Scripts\RPG\Player.cs" />
