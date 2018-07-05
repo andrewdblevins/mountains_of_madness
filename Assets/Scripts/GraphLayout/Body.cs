@@ -9,10 +9,10 @@ public class Body  {
 	public Vector3 position;
 	private Vector3 velocity;
 	private Vector3 acceleration;
-	private float attractConstant = .0001f;
-    private float repulseConstant = 100f;
+	private float attractConstant = .00001f;
+    private float repulseConstant = 6f;
     private float originAttractionConstant = .00005f;
-    private float drag = .8f;
+    private float drag = .7f;
 	public Guid InstanceID {get; private set;}
 
 	public Body(GameObject _dot){
