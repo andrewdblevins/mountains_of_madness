@@ -8,6 +8,9 @@ public class Monster {
     private int health;
     private int dieSize;
 
+    // Player acquires on kill.
+    private Treasure treasure;
+
     private Random random = new Random();
 
     private void Initialize()
@@ -22,14 +25,19 @@ public class Monster {
         return attack + random.Next(dieSize);
     }
 
+    public Treasure GetTreasure()
+    {
+        return treasure;
+    }
 
     public void ModifyHealth(int value)
     {
         health += value;
-        if (health <= 0)
-        {
-            // TODO: die.
-        }
+    }
+
+    public bool IsDead()
+    {
+        return health <= 0;
     }
 
     // Use this for initialization

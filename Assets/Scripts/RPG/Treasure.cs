@@ -7,6 +7,13 @@ public class Treasure {
     private int health;
     private int sanity;
     private int attack;
+    private TreasureType treasureType;
+
+    public enum TreasureType
+    {
+        ONE_SHOT,
+        PERMANENT,
+    }
 
     public void Initialize()
     {
@@ -14,6 +21,7 @@ public class Treasure {
         health = 0;
         sanity = 0;
         attack = 0;
+        treasureType = TreasureType.ONE_SHOT;
     }
 
     public int GetGold()
@@ -36,13 +44,8 @@ public class Treasure {
         return attack;
     }
 
-    // Use this for initialization
-    void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    public TreasureType GetTreasureType()
+    {
+        return treasureType;
+    }
 }
