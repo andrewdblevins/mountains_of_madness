@@ -63,6 +63,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Grammar.cs" />
     <Compile Include="Assets\Scripts\Graph.cs" />
+    <Compile Include="Assets\Scripts\GraphLayout\BoardManager.cs" />
+    <Compile Include="Assets\Scripts\GraphLayout\Body.cs" />
+    <Compile Include="Assets\Scripts\GraphLayout\Boundary.cs" />
+    <Compile Include="Assets\Scripts\GraphLayout\Quad.cs" />
+    <Compile Include="Assets\Scripts\GraphLayout\QuadNode.cs" />
     <Compile Include="Assets\Scripts\Mountain.cs" />
     <Compile Include="Assets\Scripts\Node.cs" />
     <Compile Include="Assets\Scripts\RoomFactory.cs" />
